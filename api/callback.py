@@ -27,32 +27,33 @@ db = firestore.client()
 
 app = Flask(__name__)
 
-
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def catch_all(path):
-    code = request.args.get("code")
+    try:
+        code = request.args.get("code")
+        if code is None:
+            # TODO: no code
+            return Response("not ok")
 
-    if code is None:
-        # TODO: no code
-        return Response("not ok")
+        token_info = spotify.generate_token(code)
+        access_token = token_info["access_token"]
 
-    token_info = spotify.generate_token(code)
-    access_token = token_info["access_token"]
+        spotify_user = spotify.get_user_profile(access_token)
+        user_id = spotify_user["id"]
 
-    spotify_user = spotify.get_user_profile(access_token)
-    user_id = spotify_user["id"]
+        doc_ref = db.collection("users").document(user_id)
+        doc_ref.set(token_info)
 
-    doc_ref = db.collection("users").document(user_id)
-    doc_ref.set(token_info)
+        rendered_data = {
+            "uid": user_id,
+            "BASE_URL": spotify.BASE_URL,
+        }
 
-    rendered_data = {
-        "uid": user_id,
-        "BASE_URL": spotify.BASE_URL,
-    }
-
-    return render_template("callback.html.j2", **rendered_data)
-
+        return render_template("callback.html.j2", **rendered_data)
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        return jsonify(error=str(e)), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
