@@ -14,8 +14,11 @@ from util import spotify
 
 print("Starting Server")
 
-firebase_config = os.getenv("FIREBASE")
-firebase_dict = json.loads(b64decode(firebase_config))
+firebase_config = os.getenv('FIREBASE')
+print(f"FIREBASE config: {firebase_config}")  # Para depuração
+decoded_config = b64decode(firebase_config).decode('utf-8')
+print(f"Decoded config: {decoded_config}")  # Para depuração
+firebase_dict = json.loads(decoded_config)
 
 cred = credentials.Certificate(firebase_dict)
 firebase_admin.initialize_app(cred)

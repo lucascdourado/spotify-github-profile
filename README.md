@@ -82,7 +82,7 @@ To develop locally, you need:
 - Login to [developer.spotify.com](https://developer.spotify.com/dashboard/applications)
 - Create a new project
 - Edit settings to add _Redirect URIs_
-  - add `http://localhost:3000/api/callback`
+  - add `https://localhost:3000/api/callback`
 
 ### Running locally
 
@@ -90,7 +90,7 @@ To develop locally, you need:
 - Create `.env` file at the root of the project and paste your keys in `SPOTIFY_CLIENT_ID`, `SPOTIFY_SECRET_ID`, and `FIREBASE`
 
 ```sh
-BASE_URL='http://localhost:3000/api'
+BASE_URL='https://localhost:3000/api'
 SPOTIFY_CLIENT_ID='____'
 SPOTIFY_SECRET_ID='____'
 FIREBASE='__BASE64_FIREBASE_JSON_FILE__'
@@ -101,24 +101,24 @@ FIREBASE='__BASE64_FIREBASE_JSON_FILE__'
 ```sh
 $ vercel dev
 Vercel CLI 20.1.2 dev (beta) — https://vercel.com/feedback
-> Ready! Available at http://localhost:3000
+> Ready! Available at https://localhost:3000
 ```
 
-- Now try to access http://localhost:3000/api/login
+- Now try to access https://localhost:3000/api/login
 
 ## How to Contribute
 
 - Develop locally and submit a pull request!
-- Submit newly encountered bugs to the [Issues](https://github.com/kittinan/spotify-github-profile/issues) page
-- Submit feature suggestions to the [Issues](https://github.com/kittinan/spotify-github-profile/issues) page, with the label [Feature Suggestion]
+- Submit newly encountered bugs to the [Issues](https://github.com/lucascdourado/spotify-github-profile/issues) page
+- Submit feature suggestions to the [Issues](https://github.com/lucascdourado/spotify-github-profile/issues) page, with the label [Feature Suggestion]
 
 ## Known Bugs
 
-[404/500 Error when playing local files](https://github.com/kittinan/spotify-github-profile/issues/19)
+[404/500 Error when playing local files](https://github.com/lucascdourado/spotify-github-profile/issues/19)
 
 ## Features in Progress
 
-[Cross-platform support (Pandora, Apple Music, etc.)](https://github.com/kittinan/spotify-github-profile/issues/37)
+[Cross-platform support (Pandora, Apple Music, etc.)](https://github.com/lucascdourado/spotify-github-profile/issues/37)
 
 ## Credit
 
